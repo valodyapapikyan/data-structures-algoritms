@@ -1,3 +1,5 @@
+import { appConfigs } from './configs/index'
+import { HtmlClassListActions } from './enums/index'
 import {
   addEvtListener,
   createElement,
@@ -5,32 +7,6 @@ import {
   request,
   toggleClassList,
 } from './helpers/index'
-
-const appConfigs = function () {
-  const URL_ALL = `https://restcountries.com/v3.1/all`
-  const URL_BY_NAME = `https://restcountries.com/v3.1`
-  const key = 'name'
-  const WEATHER_BASE_API = `http://api.weatherapi.com/v1/current.json`
-  const WEATHER_API_KEY = `bfc671633a6145979cd84623220406`
-
-  return {
-    URL_ALL,
-    URL_BY_NAME,
-    WEATHER_API_KEY,
-    key,
-    WEATHER_BASE_API,
-  }
-}
-
-const loaderIndicator = document.getElementsByTagName('i')
-
-const changeRoute = function (queryParam: string) {
-  var queryParams = new URLSearchParams(window.location.search)
-
-  queryParams.set('name', queryParam)
-
-  history.replaceState(null, null, `?${queryParams.toString()}`)
-}
 
 const getCountriesList = async function () {
   const { URL_ALL } = appConfigs()
@@ -51,13 +27,25 @@ const renderList = function (list: []) {
   }
 }
 
+const registerListeners = function (
+  elements: HTMLCollectionOf<HTMLElement>,
+  handler: Function,
+  fromAttribute: boolean = false,
+) {
+  for (let element of elements) {
+    addEvtListener(element, 'click', (event: Event) =>
+      handler(fromAttribute ? element.getAttribute('value') : event?.target),
+    )
+  }
+}
+
 const chnageHandler = async function (query: string) {
   const { URL_BY_NAME, URL_ALL } = appConfigs()
 
   const loadingIndicator = toggleClassList(getElement('loading-indicator'))
 
   let result
-  loadingIndicator('add', 'loader')
+  loadingIndicator(HtmlClassListActions.add, 'loader')
 
   if (query === '') {
     result = await request(URL_ALL)
@@ -65,13 +53,19 @@ const chnageHandler = async function (query: string) {
     result = await request(`${URL_BY_NAME}/name/${query}`)
   }
 
-  loadingIndicator('remove', 'loader')
+  loadingIndicator(HtmlClassListActions.remove, 'loader')
 
   renderList(result)
+
+  const items = document.getElementsByClassName(
+    'item-shadow',
+  ) as HTMLCollectionOf<HTMLElement>
+
+  registerListeners(items, itemOnClickHandler, true)
 }
 
 const itemOnClickHandler = function (value: string) {
-  changeRoute(value)
+  console.log(value)
 }
 
 async function init() {
@@ -80,14 +74,12 @@ async function init() {
   const list = await getCountriesList()
   renderList(list)
 
-  const items = document.getElementsByClassName('item-shadow')
+  const items = document.getElementsByClassName(
+    'item-shadow',
+  ) as HTMLCollectionOf<HTMLElement>
 
-  //@ts-ignore
-  for (let element of items) {
-    addEvtListener(element, 'click', () =>
-      itemOnClickHandler(element.getAttribute('value')),
-    )
-  }
+  // I have performance issue,  i`ll think about that
+  registerListeners(items, itemOnClickHandler, true)
 }
 
 init()

@@ -1,7 +1,7 @@
-export const setAttribute = (
-  target: HTMLElement,
-  attributes: [{ name: string; value: any }],
-) => {
+import { HtmlClassListActions } from '../enums/index'
+import { IAttribute } from '../types/index'
+
+export const setAttribute = (target: HTMLElement, attributes: [IAttribute]) => {
   attributes.forEach(({ name, value }) => {
     target.setAttribute(name, value)
   })
@@ -19,7 +19,7 @@ export const debounce = function (callBack: Function, wait: number) {
   }
 }
 
-export const request = async function (url: string) {
+export const request = async function (url: string): Promise<any> {
   const result = await fetch(url)
   return await result.json()
 }
@@ -32,8 +32,8 @@ export const getElement = function (elementId: string): HTMLElement {
 export const toggleClassList = function (target: HTMLElement) {
   const element = target
 
-  return function (action: string, className: string) {
-    if (action === 'remove') {
+  return function (action: HtmlClassListActions, className: string) {
+    if (action === HtmlClassListActions.remove) {
       return element.classList.remove(className)
     }
 
@@ -45,10 +45,10 @@ export const createElement = function <K extends keyof HTMLElementTagNameMap>(
   type: K,
   text: string,
   className: string,
-  attrs: [{ name: string; value: any }],
+  attrs: [IAttribute],
 ): HTMLElementTagNameMap[K] {
   const element = document.createElement(type)
-  toggleClassList(element)('add', className)
+  toggleClassList(element)(HtmlClassListActions.add, className)
   setAttribute(element, attrs)
 
   if (text) {
@@ -66,8 +66,9 @@ export const addEvtListener = function (
   callBack: Function,
 ) {
   const debounced = debounce(callBack, 1000)
+
   target?.addEventListener(type, (event) =>
-    //@ts-ignore
+    // @ts-ignore
     debounced(type === 'keydown' ? event : event?.target.value),
   )
 }
