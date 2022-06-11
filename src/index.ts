@@ -5,7 +5,7 @@ import {
   createElement,
   getElement,
   request,
-  toggleClassList,
+  toggleClassList
 } from './helpers/index'
 
 const getCountriesList = async function () {
@@ -40,17 +40,22 @@ const registerListeners = function (
 }
 
 const chnageHandler = async function (query: string) {
-  const { URL_BY_NAME, URL_ALL } = appConfigs()
+  const { weatherUrl ,URL_BY_NAME, URL_ALL } = appConfigs()
 
   const loadingIndicator = toggleClassList(getElement('loading-indicator'))
 
-  let result
+  let result;
   loadingIndicator(HtmlClassListActions.add, 'loader')
 
   if (query === '') {
     result = await request(URL_ALL)
   } else {
-    result = await request(`${URL_BY_NAME}/name/${query}`)
+    
+    result = await request(`${URL_BY_NAME}/name/${query}`);
+
+    const weatherData =  await request(`${weatherUrl(result[0].latlng)}`);
+    
+   
   }
 
   loadingIndicator(HtmlClassListActions.remove, 'loader')
