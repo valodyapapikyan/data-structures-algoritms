@@ -1,5 +1,5 @@
 import { HtmlClassListActions } from '../enums/index'
-import { IAttribute } from '../types/index'
+import { IAttribute } from '../interfaces/index'
 
 export const setAttribute = (target: HTMLElement, attributes: [IAttribute]) => {
   attributes.forEach(({ name, value }) => {
