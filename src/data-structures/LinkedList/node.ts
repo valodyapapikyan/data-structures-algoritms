@@ -1,5 +1,4 @@
 
 export class Node<T> {
-    public nextPointer:  Node<T> | null = null;
-    constructor(public value:  T ) {}
+    constructor(public value: T, public nextPointer: Node<T> | null = null) { }
 }
