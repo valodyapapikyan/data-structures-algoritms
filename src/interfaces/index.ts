@@ -1,6 +1,5 @@
 import { Node } from './../data-structures/LinkedList/node';
 
-
 interface IGeneral<T> {
   size(): number;
   traverse(): T[];
@@ -13,9 +12,7 @@ export interface ILinkedList<T> extends IGeneral<T> {
   insertLast(data: T): Node<T>,
   deleteFirst(): boolean,
   deleteLast(): boolean,
-
 }
-
 
 export interface IDoublyLinkedList<T> extends IGeneral<T> {
   first(): T,
