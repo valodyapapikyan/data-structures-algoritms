@@ -15,6 +15,10 @@ export class LinkedList<T> implements ILinkedList<T> {
         this.linkedListSize = 0;
     }
 
+    isEmpty(): boolean {
+        return 0 === this.linkedListSize
+    }
+
     insertFirst(data: T): Node<T> {
 
         const node = new Node(data);
