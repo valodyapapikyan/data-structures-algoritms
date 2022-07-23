@@ -18,5 +18,13 @@ export class Comparator<T> {
         return this.compare(a, b)
     }
 
+    lessThan (a: T, b: T) {
+        return this.compare(a,b) < 0
+    }
+
+    greatherThan(a: T, b:T) {
+        return this.compare(a,b) > 0
+    }
+
     // todo to be implemented lessThan, greaterThan
 }

@@ -4,119 +4,111 @@ import { isEmpty } from '../../utils/isEmpty';
 import { Comparator } from '../../utils/Comparator';
 
 export class LinkedList<T> implements ILinkedList<T> {
+  head: Node<T>;
+  tail: Node<T>;
+  linkedListSize: number;
 
-    head: Node<T>;
-    tail: Node<T>;
-    linkedListSize: number;
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.linkedListSize = 0;
+  }
 
-    constructor() {
-        this.head = null;
-        this.tail = null;
-        this.linkedListSize = 0;
+  isEmpty(): boolean {
+    return 0 === this.linkedListSize;
+  }
+
+  insertFirst(data: T): Node<T> {
+    const node = new Node(data);
+
+    if (!this.head) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      node.nextPointer = this.head;
+      this.head = node;
+    }
+    this.linkedListSize++;
+    return node;
+  }
+
+  insertLast(data: T): Node<T> {
+    const node = new Node(data);
+
+    if (isEmpty(this.linkedListSize)) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      this.tail.nextPointer = node;
+      this.tail = node;
     }
 
-    isEmpty(): boolean {
-        return 0 === this.linkedListSize
+    this.linkedListSize++;
+    return node;
+  }
+
+  deleteFirst(): boolean {
+    if (isEmpty(this.linkedListSize)) {
+      return false;
     }
 
-    insertFirst(data: T): Node<T> {
+    this.head = this.head.nextPointer;
+    this.linkedListSize--;
+    return true;
+  }
 
-        const node = new Node(data);
+  deleteLast(): boolean {
+    let currentNode = this.head;
+    let temp;
 
-        if (!this.head) {
-            this.head = node;
-            this.tail = node;
-        } else {
-            node.nextPointer = this.head;
-            this.head = node;
-        }
-        this.linkedListSize++;
-        return node;
+    while (currentNode) {
+      if (currentNode.nextPointer) {
+        temp = currentNode;
+      }
+      currentNode = currentNode.nextPointer;
     }
 
-    insertLast(data: T): Node<T> {
+    temp.nextPointer = null;
+    this.tail = temp;
 
-        const node = new Node(data);
+    this.linkedListSize--;
+    return true;
+  }
 
-        if (isEmpty(this.linkedListSize)) {
-            this.head = node;
-            this.tail = node;
-        } else {
-            this.tail.nextPointer = node;
-            this.tail = node;
-        }
+  traverse(): T[] {
+    const array: T[] = [];
+    let currentNode = this.head;
 
-        this.linkedListSize++;
-        return node
+    if (!currentNode) {
+      return array;
     }
 
-    deleteFirst(): boolean {
-
-        if (isEmpty(this.linkedListSize)) {
-            return false
-        }
-
-        this.head = this.head.nextPointer;
-        this.linkedListSize--;
-        return true
+    while (currentNode) {
+      array.push(currentNode.value);
+      currentNode = currentNode.nextPointer;
     }
 
-    deleteLast(): boolean {
+    return array;
+  }
 
-        let currentNode = this.head;
-        let temp;
+  size(): number {
+    return this.linkedListSize;
+  }
 
-        while (currentNode) {
-            if (currentNode.nextPointer) {
-                temp = currentNode;
-            }
-            currentNode = currentNode.nextPointer;
-        }
+  search(data: T): Node<T> {
+    let currentNode = this.head;
+    let node: Node<T> = null;
 
-        temp.nextPointer = null
-        this.tail = temp;
-
-        this.linkedListSize--;
-        return true
+    if (!currentNode) {
+      return null;
     }
 
-
-    traverse(): T[] {
-
-        const array: T[] = [];
-        let currentNode = this.head;
-
-        if (!currentNode) {
-            return array
-        }
-
-        while (currentNode) {
-            array.push(currentNode.value);
-            currentNode = currentNode.nextPointer
-        }
-
-        return array
+    while (currentNode) {
+      if (new Comparator().isEqual(currentNode.value, data) === 0) {
+        node = currentNode;
+      }
+      currentNode = currentNode.nextPointer;
     }
-
-    size(): number {
-        return this.linkedListSize
-    }
-
-    search(data: T): Node<T> {
-        let currentNode = this.head;
-        let node: Node<T> = null;
-
-        if (!currentNode) {
-            return null
-        }
-
-        while (currentNode) {
-            if (new Comparator().isEqual(currentNode.value, data) === 0) {
-                node = currentNode
-            }
-            currentNode = currentNode.nextPointer
-        }
-        return node
-    }
-
+    return node;
+  }
 }
