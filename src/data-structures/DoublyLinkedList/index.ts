@@ -24,7 +24,7 @@ export class DoblyLinkedList<T> implements IDoublyLinkedList<T> {
 
     while (currentNode) {
       if (new Comparator().isEqual(currentNode.value, data) === 0) {
-        node =  currentNode;
+        node = currentNode;
       }
       currentNode = currentNode.nextPointer;
     }
