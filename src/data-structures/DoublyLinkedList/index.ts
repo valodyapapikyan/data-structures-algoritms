@@ -1,32 +1,119 @@
+import { isEmpty } from '../../utils/isEmpty';
 import { IDoublyLinkedList } from './../../interfaces/index';
-
+import { Node } from './node';
 
 export class DoblyLinkedList<T> implements IDoublyLinkedList<T> {
-  first(): T {
-    throw new Error('Method not implemented.');
+  linkedListSize: number;
+  head: Node<T>;
+  tail: Node<T>;
+
+  constructor() {
+    this.linkedListSize = 0;
+    this.tail = null;
+    this.head = null;
   }
-  last(): T {
-    throw new Error('Method not implemented.');
+
+  search(data: T): Node<T> {
+    if (isEmpty(this.linkedListSize)) {
+      return null;
+    }
+
+    let currentNode = this.head;
+
+    while (currentNode) {
+      console.log(currentNode);
+      if (currentNode.value === data) {
+        return currentNode;
+      }
+      currentNode = currentNode.nextPointer;
+    }
+    return null;
   }
-  addFirst(element: T): void {
-    throw new Error('Method not implemented.');
+
+  first(): Node<T> {
+    return this.head;
   }
-  addLast(element: T): void {
-    throw new Error('Method not implemented.');
+
+  last(): Node<T> {
+    return this.tail;
   }
-  removeFisrt(): T {
-    throw new Error('Method not implemented.');
+
+  addFirst(element: T): boolean {
+    const node = new Node(element);
+
+    if (!this.head) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      node.nextPointer = this.head;
+      this.head.previousPointer = node;
+      this.head = node;
+      node.previousPointer = null;
+    }
+
+    this.linkedListSize++;
+    return true
   }
-  removeLast(): T {
-    throw new Error('Method not implemented.');
+
+  addLast(element: T): boolean {
+    const node = new Node(element);
+
+    if (isEmpty(this.linkedListSize)) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      this.tail.nextPointer = node;
+      node.previousPointer = this.tail;
+      this.tail = node;
+    }
+    this.linkedListSize++;
+    return true
   }
+
+  removeFisrt(): boolean {
+    if (isEmpty(this.linkedListSize)) {
+      return false;
+    }
+
+    this.head = this.head.nextPointer;
+    this.head.previousPointer = null;
+    this.linkedListSize--;
+
+    return true;
+  }
+
+  removeLast(): boolean {
+    if (isEmpty(this.linkedListSize)) {
+      return false;
+    }
+
+    this.tail = this.tail.previousPointer;
+    this.tail.nextPointer = null;
+    this.linkedListSize--;
+    return true;
+  }
+
   size(): number {
-    throw new Error('Method not implemented.');
+    return this.linkedListSize;
   }
+
   traverse(): T[] {
-    throw new Error('Method not implemented.');
+    const array: T[] = [];
+    let currentNode = this.head;
+
+    if (!currentNode) {
+      return array;
+    }
+
+    while (currentNode) {
+      array.push(currentNode.value);
+      currentNode = currentNode.nextPointer;
+    }
+
+    return array;
   }
+
   isEmpty(): boolean {
-    throw new Error('Method not implemented.');
+    return 0 === this.linkedListSize;
   }
 }
