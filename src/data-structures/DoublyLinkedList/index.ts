@@ -117,4 +117,16 @@ export class DoblyLinkedList<T> implements IDoublyLinkedList<T> {
   isEmpty(): boolean {
     return 0 === this.linkedListSize;
   }
+
+  *[Symbol.iterator](): Iterator<T> {
+    if (!this.head) {
+      return;
+    }
+
+    let current: Node<T> | null;
+
+    for (current = this.head; current !== null; current = current.nextPointer) {
+      yield current.value;
+    }
+  }
 }

@@ -1,30 +1,27 @@
 export class Comparator<T> {
+  compare: (a: T, b: T) => 0 | 1 | -1;
 
-    compare: (a: T, b: T) => 0 | 1 | -1;
+  constructor() {
+    this.compare = this.defaultComparator;
+  }
 
-    constructor() {
-        this.compare = this.defaultComparator;
-    };
-
-    defaultComparator(a: T, b: T) {
-        if (a === b) {
-            return 0;
-        }
-
-        return a < b ? -1 : 1;
+  defaultComparator(a: T, b: T) {
+    if (a === b) {
+      return 0;
     }
 
-    isEqual(a: T, b: T) {
-        return this.compare(a, b)
-    }
+    return a < b ? -1 : 1;
+  }
 
-    lessThan (a: T, b: T) {
-        return this.compare(a,b) < 0
-    }
+  isEqual(a: T, b: T) {
+    return this.compare(a, b);
+  }
 
-    greatherThan(a: T, b:T) {
-        return this.compare(a,b) > 0
-    }
+  lessThan(a: T, b: T) {
+    return this.compare(a, b) < 0;
+  }
 
-    // todo to be implemented lessThan, greaterThan
+  greatherThan(a: T, b: T) {
+    return this.compare(a, b) > 0;
+  }
 }

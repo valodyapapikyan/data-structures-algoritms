@@ -19,8 +19,11 @@ import { DoblyLinkedList } from './data-structures/DoublyLinkedList/index';
 
 //   console.log('before', stack);
 
+doublyLinkedList.addFirst(1)
+doublyLinkedList.addFirst(2)
 
-for(let item of stack) {
+
+for(let item of doublyLinkedList) {
     console.log(item)
 }
   //   doublyLinkedList.addFirst(4);
