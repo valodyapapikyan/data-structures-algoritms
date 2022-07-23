@@ -1,3 +1,4 @@
+import { Comparator } from './../../utils/Comparator';
 import { isEmpty } from '../../utils/isEmpty';
 import { IDoublyLinkedList } from './../../interfaces/index';
 import { Node } from './node';
@@ -19,15 +20,15 @@ export class DoblyLinkedList<T> implements IDoublyLinkedList<T> {
     }
 
     let currentNode = this.head;
+    let node: Node<T> = null;
 
     while (currentNode) {
-      console.log(currentNode);
-      if (currentNode.value === data) {
-        return currentNode;
+      if (new Comparator().isEqual(currentNode.value, data) === 0) {
+        node =  currentNode;
       }
       currentNode = currentNode.nextPointer;
     }
-    return null;
+    return node;
   }
 
   first(): Node<T> {
@@ -52,7 +53,7 @@ export class DoblyLinkedList<T> implements IDoublyLinkedList<T> {
     }
 
     this.linkedListSize++;
-    return true
+    return true;
   }
 
   addLast(element: T): boolean {
@@ -67,7 +68,7 @@ export class DoblyLinkedList<T> implements IDoublyLinkedList<T> {
       this.tail = node;
     }
     this.linkedListSize++;
-    return true
+    return true;
   }
 
   removeFisrt(): boolean {
