@@ -111,4 +111,16 @@ export class LinkedList<T> implements ILinkedList<T> {
     }
     return node;
   }
+
+  *[Symbol.iterator](): Iterator<T> {
+    if (!this.head) {
+      return;
+    }
+
+    let current: Node<T> | null;
+
+    for (current = this.head; current !== null; current = current.nextPointer) {
+      yield current.value;
+    }
+  }
 }

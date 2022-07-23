@@ -1,19 +1,38 @@
+import { Stack } from './data-structures/Stack/index';
 import { LinkedList } from './data-structures/LinkedList/index';
 import { DoblyLinkedList } from './data-structures/DoublyLinkedList/index';
 (function () {
   const linkedList = new LinkedList();
   const doublyLinkedList = new DoblyLinkedList();
+  const stack = new Stack();
 
-  doublyLinkedList.addFirst(4);
-  doublyLinkedList.addFirst(3);
-  doublyLinkedList.addFirst(2);
-  doublyLinkedList.addLast(5);
+  stack.push(1);
+  stack.push(2);
 
-  doublyLinkedList.removeFisrt()
-  doublyLinkedList.removeLast()
-  console.log('search', doublyLinkedList.search(5));
+  stack.push(3);
+  stack.push(4);
 
-  console.log('doub', doublyLinkedList.traverse());
+//   // console.log('after',stack)
+
+  console.log('peak', stack.peak());
+//   console.log('pop', stack.pop());
+
+//   console.log('before', stack);
+
+
+for(let item of stack) {
+    console.log(item)
+}
+  //   doublyLinkedList.addFirst(4);
+  //   doublyLinkedList.addFirst(3);
+  //   doublyLinkedList.addFirst(2);
+  //   doublyLinkedList.addLast(5);
+
+  //   doublyLinkedList.removeFisrt()
+  //   doublyLinkedList.removeLast()
+  //   console.log('search', doublyLinkedList.search(5));
+
+  //   console.log('doub', doublyLinkedList.traverse());
 
   // linkedList.insertFirst(1);
   // linkedList.insertFirst(2);
