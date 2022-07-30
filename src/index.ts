@@ -1,21 +1,48 @@
+import { PriorityQueue } from './data-structures/PriorityQueue/index';
 import { Queue } from './data-structures/Queue/index';
 import { Stack } from './data-structures/Stack/index';
 import { LinkedList } from './data-structures/LinkedList/index';
 import { DoblyLinkedList } from './data-structures/DoublyLinkedList/index';
+
+
 (function () {
   const linkedList = new LinkedList();
   const doublyLinkedList = new DoblyLinkedList();
   const stack = new Stack();
   const queue  = new Queue()
 
+  const priorityQueue = new PriorityQueue()
+  priorityQueue.enqueue(7); //
+  priorityQueue.enqueue(4);
+  priorityQueue.enqueue(8); //
+  priorityQueue.enqueue(5); //
+  priorityQueue.enqueue(3);
+  priorityQueue.enqueue(6); //
+  priorityQueue.enqueue(-45);
 
-  queue.enque("1-1");
-  queue.enque("2-2");
-  queue.enque("3-3")
+
+  priorityQueue.dequeue();
+  priorityQueue.dequeue();
+  priorityQueue.dequeue();
+  priorityQueue.dequeue();
+
+
+console.log('count = ',priorityQueue.getCount());
+
+console.log('first',   priorityQueue.first());
+
+console.log('last',   priorityQueue.rear());
+
+  for(let item of priorityQueue) {
+    console.log('items', item)
+}
+  // queue.enque("1-1");
+  // queue.enque("2-2");
+  // queue.enque("3-3")
 
 
   for(let item of queue) {
-    console.log(item)
+    // console.log(item)
 }
   // stack.push(1);
   // stack.push(2);
