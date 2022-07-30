@@ -1,4 +1,3 @@
-import { Queue } from './data-structures/Queue/index';
 import { Stack } from './data-structures/Stack/index';
 import { LinkedList } from './data-structures/LinkedList/index';
 import { DoblyLinkedList } from './data-structures/DoublyLinkedList/index';
@@ -6,26 +5,16 @@ import { DoblyLinkedList } from './data-structures/DoublyLinkedList/index';
   const linkedList = new LinkedList();
   const doublyLinkedList = new DoblyLinkedList();
   const stack = new Stack();
-  const queue  = new Queue()
 
+  stack.push(1);
+  stack.push(2);
 
-  queue.enque("1-1");
-  queue.enque("2-2");
-  queue.enque("3-3")
-
-
-  for(let item of queue) {
-    console.log(item)
-}
-  // stack.push(1);
-  // stack.push(2);
-
-  // stack.push(3);
-  // stack.push(4);
+  stack.push(3);
+  stack.push(4);
 
 //   // console.log('after',stack)
 
-  // console.log('peak', stack.peak());
+  console.log('peak', stack.peak());
 //   console.log('pop', stack.pop());
 
 //   console.log('before', stack);
