@@ -12,20 +12,19 @@ import { DoblyLinkedList } from './data-structures/DoublyLinkedList/index';
   stack.push(3);
   stack.push(4);
 
-//   // console.log('after',stack)
+  //   // console.log('after',stack)
 
   console.log('peak', stack.peak());
-//   console.log('pop', stack.pop());
+  //   console.log('pop', stack.pop());
 
-//   console.log('before', stack);
+  //   console.log('before', stack);
 
-doublyLinkedList.addFirst(1)
-doublyLinkedList.addFirst(2)
+  doublyLinkedList.addFirst(1);
+  doublyLinkedList.addFirst(2);
 
-
-for(let item of doublyLinkedList) {
+  for (const item of doublyLinkedList) {
     // console.log(item)
-}
+  }
   //   doublyLinkedList.addFirst(4);
   //   doublyLinkedList.addFirst(3);
   //   doublyLinkedList.addFirst(2);

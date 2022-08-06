@@ -2,7 +2,7 @@ import { LinkedList } from './../LinkedList/index';
 import { IStack } from './../../interfaces/stack/index';
 import { Node } from '../LinkedList/node';
 
-export class Stack<T> implements IStack<T>{
+export class Stack<T> implements IStack<T> {
   list: LinkedList<T>;
 
   constructor() {
@@ -29,7 +29,7 @@ export class Stack<T> implements IStack<T>{
     return this.list.size();
   }
 
-  [Symbol.iterator]() : Iterator<T>  {
+  [Symbol.iterator](): Iterator<T> {
     return this.list[Symbol.iterator]();
   }
 }

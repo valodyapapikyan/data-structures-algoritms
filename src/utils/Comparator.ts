@@ -1,8 +1,10 @@
-export class Comparator<T> {
-  compare: (a: T, b: T) => 0 | 1 | -1;
+import { IComparator } from '../interfaces/index';
 
-  constructor() {
-    this.compare = this.defaultComparator;
+export class Comparator<T> {
+  compare: IComparator<T>;
+
+  constructor(comparatorCallback: IComparator<T> = undefined) {
+    this.compare = comparatorCallback || this.defaultComparator;
   }
 
   defaultComparator(a: T, b: T) {
@@ -14,7 +16,7 @@ export class Comparator<T> {
   }
 
   isEqual(a: T, b: T) {
-    return this.compare(a, b);
+    return this.compare(a, b) === 0;
   }
 
   lessThan(a: T, b: T) {

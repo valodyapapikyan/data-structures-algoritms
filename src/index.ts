@@ -1,3 +1,4 @@
+import { binarySearch } from './algoritms/search/binary-search';
 import { PriorityQueue } from './data-structures/PriorityQueue/index';
 import { Queue } from './data-structures/Queue/index';
 import { Stack } from './data-structures/Stack/index';
@@ -15,29 +16,54 @@ import { DoblyLinkedList } from './data-structures/DoublyLinkedList/index';
   priorityQueue.enqueue(4);
   priorityQueue.enqueue(8); //
   priorityQueue.enqueue(5); //
-  priorityQueue.enqueue(3);
-  priorityQueue.enqueue(6); //
-  priorityQueue.enqueue(-45);
+  // priorityQueue.enqueue(3);
+  // priorityQueue.enqueue(6); //
+  // priorityQueue.enqueue(-45);
 
   priorityQueue.dequeue();
   priorityQueue.dequeue();
   priorityQueue.dequeue();
   priorityQueue.dequeue();
 
-  console.log('count = ', priorityQueue.getCount());
+  // console.log('count = ', priorityQueue.getCount());
 
-  console.log('first', priorityQueue.first());
+  // console.log('first', priorityQueue.first());
 
-  console.log('last', priorityQueue.rear());
+  // console.log('last', priorityQueue.rear());
 
-  for (let item of priorityQueue) {
-    console.log('items', item);
+  //EXAMPLE OF  COMPARATOR FUNCTION
+  const comparatorCallBack = function (obj: any, obj1: any) {
+    if (obj.value === obj1.value) {
+      return 0;
+    }
+    if (obj.value < obj1.value) {
+      return -1;
+    }
+    if (obj.value > obj1.value) {
+      return 1;
+    }
+  };
+
+  //WITH COMPARATOR
+  console.log(
+    binarySearch(
+      [{ value: 0 }, { value: 1 }, { value: 3 }, { value: 4 }, { value: 5 }, { value: 6 }],
+      { value: 4 },
+      comparatorCallBack
+    )
+  );
+
+  //WITHOUT COMPARATOR
+  console.log(binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9], 6));
+
+  for (const item of priorityQueue) {
+    // console.log('items', item);
   }
   // queue.enque("1-1");
   // queue.enque("2-2");
   // queue.enque("3-3")
 
-  for (let item of queue) {
+  for (const item of queue) {
     // console.log(item)
   }
   // stack.push(1);
@@ -53,10 +79,10 @@ import { DoblyLinkedList } from './data-structures/DoublyLinkedList/index';
 
   //   console.log('before', stack);
 
-  doublyLinkedList.addFirst(1);
-  doublyLinkedList.addFirst(2);
+  // doublyLinkedList.addFirst(1);
+  // doublyLinkedList.addFirst(2);
 
-  for (let item of doublyLinkedList) {
+  for (const item of doublyLinkedList) {
     // console.log(item)
   }
   //   doublyLinkedList.addFirst(4);

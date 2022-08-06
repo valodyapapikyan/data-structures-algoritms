@@ -23,7 +23,7 @@ export class DoblyLinkedList<T> implements IDoublyLinkedList<T> {
     let node: Node<T> = null;
 
     while (currentNode) {
-      if (new Comparator().isEqual(currentNode.value, data) === 0) {
+      if (new Comparator().isEqual(currentNode.value, data)) {
         node = currentNode;
       }
       currentNode = currentNode.nextPointer;

@@ -1,3 +1,7 @@
 import { ILinkedList, IDoublyLinkedList } from './linked-list/index';
 
-export {ILinkedList, IDoublyLinkedList}
+export interface IComparator<T> {
+  (a: T, B: T): 0 | 1 | -1;
+}
+
+export { ILinkedList, IDoublyLinkedList };

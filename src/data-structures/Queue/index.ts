@@ -7,7 +7,7 @@ export class Queue<T> implements IQueue<T> {
   count: number;
 
   constructor() {
-    this.queueContainer  = new DoblyLinkedList();
+    this.queueContainer = new DoblyLinkedList();
     this.count = 0;
   }
 

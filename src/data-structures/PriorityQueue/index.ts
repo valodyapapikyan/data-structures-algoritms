@@ -60,9 +60,7 @@ export class PriorityQueue<T> implements IQueue<T> {
 
     const data = this.first();
 
-    if (
-      new Comparator().isEqual(this.queueContainer.head.value, this.queueContainer.tail.value) === 0
-    ) {
+    if (new Comparator().isEqual(this.queueContainer.head.value, this.queueContainer.tail.value)) {
       this.queueContainer.head = null;
       this.queueContainer.tail = null;
     } else {

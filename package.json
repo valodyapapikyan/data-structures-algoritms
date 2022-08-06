@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run bundle && npm-run-all --parallel watch serve",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write \"src/**/*.{ts,js}\"",
+    "lint": "eslint \"src/**/*.{ts,js}\" --fix",
     "bundle": "webpack",
     "watch": "webpack --watch",
     "serve": "cd dist && live-server"
@@ -14,10 +15,15 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.32.0",
+    "@typescript-eslint/parser": "^5.32.0",
+    "eslint": "^8.21.0",
+    "eslint-config-prettier": "^8.5.0",
     "live-server": "^1.2.1",
     "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1",
     "ts-loader": "^8.1.0",
-    "typescript": "^4.2.3",
+    "typescript": "^4.7.4",
     "webpack": "^5.30.0",
     "webpack-cli": "^4.6.0"
   }

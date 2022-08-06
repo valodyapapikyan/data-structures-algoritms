@@ -104,7 +104,7 @@ export class LinkedList<T> implements ILinkedList<T> {
     }
 
     while (currentNode) {
-      if (new Comparator().isEqual(currentNode.value, data) === 0) {
+      if (new Comparator().isEqual(currentNode.value, data)) {
         node = currentNode;
       }
       currentNode = currentNode.nextPointer;
