@@ -5,11 +5,11 @@ import { Node } from '../DoublyLinkedList/node';
 
 export class PriorityQueue<T> implements IQueue<T> {
   count: number;
-  list: DoblyLinkedList<T>;
+  queueContainer: DoblyLinkedList<T>;
 
   constructor() {
     this.count = 0;
-    this.list = new DoblyLinkedList();
+    this.queueContainer = new DoblyLinkedList();
   }
 
   /**
@@ -20,18 +20,18 @@ export class PriorityQueue<T> implements IQueue<T> {
   enqueue(element: T): void {
     const node = new Node(element);
 
-    if (this.list.head === null) {
-      this.list.addFirst(element);
-    } else if (new Comparator().lessThan(this.list.head.value, element)) {
-      node.nextPointer = this.list.first();
-      this.list.first().previousPointer = node;
-      this.list.head = node;
-    } else if (new Comparator().greatherThan(this.list.tail.value, element)) {
-      node.previousPointer = this.list.tail;
-      this.list.tail.nextPointer = node;
-      this.list.tail = node;
+    if (this.queueContainer.head === null) {
+      this.queueContainer.addFirst(element);
+    } else if (new Comparator().lessThan(this.queueContainer.head.value, element)) {
+      node.nextPointer = this.queueContainer.first();
+      this.queueContainer.first().previousPointer = node;
+      this.queueContainer.head = node;
+    } else if (new Comparator().greatherThan(this.queueContainer.tail.value, element)) {
+      node.previousPointer = this.queueContainer.tail;
+      this.queueContainer.tail.nextPointer = node;
+      this.queueContainer.tail = node;
     } else {
-      let temp = this.list.first();
+      let temp = this.queueContainer.first();
 
       while (new Comparator().greatherThan(temp.value, element)) {
         temp = temp.nextPointer;
@@ -61,13 +61,13 @@ export class PriorityQueue<T> implements IQueue<T> {
     const data = this.first();
 
     if (
-      new Comparator().isEqual(this.list.head.value, this.list.tail.value) === 0
+      new Comparator().isEqual(this.queueContainer.head.value, this.queueContainer.tail.value) === 0
     ) {
-      this.list.head = null;
-      this.list.tail = null;
+      this.queueContainer.head = null;
+      this.queueContainer.tail = null;
     } else {
-      this.list.head = this.list.head.nextPointer;
-      this.list.head.previousPointer = null;
+      this.queueContainer.head = this.queueContainer.head.nextPointer;
+      this.queueContainer.head.previousPointer = null;
     }
 
     this.count--;
@@ -81,7 +81,7 @@ export class PriorityQueue<T> implements IQueue<T> {
    */
   first(): Node<T> {
     if (!this.isEmpty()) {
-      return this.list.head;
+      return this.queueContainer.head;
     }
     return null;
   }
@@ -93,7 +93,7 @@ export class PriorityQueue<T> implements IQueue<T> {
    */
   rear(): Node<T> {
     if (!this.isEmpty()) {
-      return this.list.tail;
+      return this.queueContainer.tail;
     }
 
     return null;
@@ -108,6 +108,6 @@ export class PriorityQueue<T> implements IQueue<T> {
   }
 
   [Symbol.iterator](): Iterator<T> {
-    return this.list[Symbol.iterator]();
+    return this.queueContainer[Symbol.iterator]();
   }
 }

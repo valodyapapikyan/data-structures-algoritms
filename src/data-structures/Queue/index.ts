@@ -3,11 +3,11 @@ import { IQueue } from './../../interfaces/queue/index';
 import { DoblyLinkedList } from '../DoublyLinkedList/index';
 
 export class Queue<T> implements IQueue<T> {
-  list: DoblyLinkedList<T>;
+  queueContainer: DoblyLinkedList<T>;
   count: number;
 
   constructor() {
-    this.list = new DoblyLinkedList();
+    this.queueContainer  = new DoblyLinkedList();
     this.count = 0;
   }
 
@@ -17,7 +17,7 @@ export class Queue<T> implements IQueue<T> {
    * @param {T} element
    */
   enqueue(element: T): void {
-    this.list.addLast(element);
+    this.queueContainer.addLast(element);
     this.count++;
   }
 
@@ -26,8 +26,8 @@ export class Queue<T> implements IQueue<T> {
    * Time complexity: O(1)
    */
   dequeue(): Node<T> {
-    const head = this.list.head;
-    this.list.removeFisrt();
+    const head = this.queueContainer.head;
+    this.queueContainer.removeFisrt();
     this.count--;
     return head;
   }
@@ -36,14 +36,14 @@ export class Queue<T> implements IQueue<T> {
    * Return firts element
    */
   first(): Node<T> {
-    return this.list.head;
+    return this.queueContainer.head;
   }
 
   /**
    * Return last element
    */
   rear(): Node<T> {
-    return this.list.tail;
+    return this.queueContainer.tail;
   }
 
   isEmpty(): boolean {
@@ -51,6 +51,6 @@ export class Queue<T> implements IQueue<T> {
   }
 
   [Symbol.iterator](): Iterator<T> {
-    return this.list[Symbol.iterator]();
+    return this.queueContainer[Symbol.iterator]();
   }
 }
