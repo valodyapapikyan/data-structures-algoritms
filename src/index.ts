@@ -4,12 +4,38 @@ import { Queue } from './data-structures/Queue/index';
 import { Stack } from './data-structures/Stack/index';
 import { LinkedList } from './data-structures/LinkedList/index';
 import { DoblyLinkedList } from './data-structures/DoublyLinkedList/index';
+import { HashTable } from './data-structures/HashTable/index';
 
 (function () {
   const linkedList = new LinkedList();
   const doublyLinkedList = new DoblyLinkedList();
   const stack = new Stack();
   const queue = new Queue();
+
+  const hashTable = new HashTable();
+
+  // function sleep() {
+  //   return new Promise(resolve => setTimeout(resolve, 4000));
+  // };
+
+  console.log(hashTable.add('valodya', 7));
+  console.log(hashTable.add('gag', 888887));
+  console.log(hashTable.add('gag', 888887));
+
+  console.log(hashTable.add('gag', 888887));
+
+  console.log(hashTable.add('gag', 90909000009));
+
+  console.log('after insert', hashTable.getValues());
+
+  // await sleep();
+  hashTable.delete('gag');
+
+  console.log('after delete', hashTable.getValues());
+
+  console.log('GET function : ', hashTable.get('valodya'));
+
+  console.log('HAS function : ', hashTable.has('valodyaa'));
 
   const priorityQueue = new PriorityQueue();
   priorityQueue.enqueue(7); //
@@ -45,16 +71,16 @@ import { DoblyLinkedList } from './data-structures/DoublyLinkedList/index';
   };
 
   //WITH COMPARATOR
-  console.log(
-    binarySearch(
-      [{ value: 0 }, { value: 1 }, { value: 3 }, { value: 4 }, { value: 5 }, { value: 6 }],
-      { value: 4 },
-      comparatorCallBack
-    )
-  );
+  // console.log(
+  //   binarySearch(
+  //     [{ value: 0 }, { value: 1 }, { value: 3 }, { value: 4 }, { value: 5 }, { value: 6 }],
+  //     { value: 4 },
+  //     comparatorCallBack
+  //   )
+  // );
 
   //WITHOUT COMPARATOR
-  console.log(binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9], 6));
+  // console.log(binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9], 6));
 
   for (const item of priorityQueue) {
     // console.log('items', item);

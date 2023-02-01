@@ -2,6 +2,7 @@ import { Comparator } from './../../utils/Comparator';
 import { isEmpty } from '../../utils/isEmpty';
 import { IDoublyLinkedList } from './../../interfaces/index';
 import { Node } from './node';
+import { TSearch } from '../../interfaces/linked-list/index';
 
 export class DoblyLinkedList<T> implements IDoublyLinkedList<T> {
   linkedListSize: number;
@@ -14,7 +15,9 @@ export class DoblyLinkedList<T> implements IDoublyLinkedList<T> {
     this.head = null;
   }
 
-  search(data: T): Node<T> {
+  search(args: TSearch<T>): Node<T> {
+    const { data } = args;
+
     if (isEmpty(this.linkedListSize)) {
       return null;
     }

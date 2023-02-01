@@ -1,10 +1,15 @@
 import { Node } from '../../data-structures/LinkedList/node';
 
+
+export type TSearch<T> = {
+  data:T,
+  callback: (nodeValue: T) => any
+}
 interface IGeneral<T> extends Iterable<T> {
   size(): number;
   traverse(): T[];
   isEmpty(): boolean;
-  search(data: T): Node<T> | null;
+  search(args: TSearch<T>): Node<T> | null;
 }
 
 export interface ILinkedList<T> extends IGeneral<T> {
