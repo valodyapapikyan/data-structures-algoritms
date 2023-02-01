@@ -2,6 +2,7 @@ import { ILinkedList } from './../../interfaces/index';
 import { Node } from './node';
 import { isEmpty } from '../../utils/isEmpty';
 import { Comparator } from '../../utils/Comparator';
+import { TSearch } from '../../interfaces/linked-list/index';
 
 export class LinkedList<T> implements ILinkedList<T> {
   head: Node<T>;
@@ -16,6 +17,38 @@ export class LinkedList<T> implements ILinkedList<T> {
 
   isEmpty(): boolean {
     return 0 === this.linkedListSize;
+  }
+
+  delete(data: T): null | Node<T> {
+    let deletedNode: null | Node<T> = null;
+
+    if (!this.head) {
+      return null;
+    }
+
+    while (this.head && new Comparator().isEqual(this.head.value, data)) {
+      deletedNode = this.head;
+      this.head = this.head.nextPointer;
+    }
+
+    let currentNode = this.head;
+
+    if (currentNode !== null) {
+      while (currentNode.nextPointer) {
+        if (new Comparator().isEqual(currentNode.nextPointer.value, data)) {
+          deletedNode = currentNode.nextPointer;
+          currentNode.nextPointer = currentNode.nextPointer.nextPointer;
+        } else {
+          currentNode = currentNode.nextPointer;
+        }
+      }
+    }
+
+    if (new Comparator().isEqual(this.tail.value, data)) {
+      this.tail = currentNode;
+    }
+
+    return deletedNode;
   }
 
   insertFirst(data: T): Node<T> {
@@ -95,21 +128,40 @@ export class LinkedList<T> implements ILinkedList<T> {
     return this.linkedListSize;
   }
 
-  search(data: T): Node<T> {
-    let currentNode = this.head;
-    let node: Node<T> = null;
+  search(args: TSearch<T>): Node<T> {
+    const { callback, data } = args;
 
-    if (!currentNode) {
+    if (!this.head) {
       return null;
     }
 
+    let currentNode = this.head;
+
     while (currentNode) {
-      if (new Comparator().isEqual(currentNode.value, data)) {
-        node = currentNode;
+      if (callback && callback(currentNode.value)) {
+        return currentNode;
       }
+
+      if (data !== undefined && new Comparator().isEqual(currentNode.value, data)) {
+        return currentNode;
+      }
+
       currentNode = currentNode.nextPointer;
     }
-    return node;
+
+    return null;
+  }
+
+  toArray() {
+    const nodes = [];
+
+    let currentNode = this.head;
+    while (currentNode) {
+      nodes.push(currentNode);
+      currentNode = currentNode.nextPointer;
+    }
+
+    return nodes;
   }
 
   *[Symbol.iterator](): Iterator<T> {
