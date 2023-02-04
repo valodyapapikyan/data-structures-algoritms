@@ -1,6 +1,6 @@
-import { Node } from './../DoublyLinkedList/node';
-import { IQueue } from './../../interfaces/queue/index';
-import { DoblyLinkedList } from '../DoublyLinkedList/index';
+import { Node } from '../doubly-linked-lits/node';
+import { IQueue } from '../../interfaces/queue/index';
+import { DoblyLinkedList } from '../doubly-linked-lits/index';
 
 export class Queue<T> implements IQueue<T> {
   queueContainer: DoblyLinkedList<T>;
@@ -22,7 +22,7 @@ export class Queue<T> implements IQueue<T> {
   }
 
   /**
-   * Add an item to the queue
+   * remove an item to the queue
    * Time complexity: O(1)
    */
   dequeue(): Node<T> {

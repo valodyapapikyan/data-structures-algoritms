@@ -1,5 +1,5 @@
 import { IComparator } from '../../interfaces/index';
-import { Comparator } from '../../utils/Comparator';
+import { Comparator } from '../../utils/comparator';
 
 export const binarySearch = function <T>(
   sortedArray: T[],

@@ -1,6 +1,6 @@
-import { Stack } from './data-structures/Stack/index';
-import { LinkedList } from './data-structures/LinkedList/index';
-import { DoblyLinkedList } from './data-structures/DoublyLinkedList/index';
+import { Stack } from './data-structures/stack/index';
+import { LinkedList } from './data-structures/linked-list/index';
+import { DoblyLinkedList } from './data-structures/doubly-linked-lits/index';
 (function () {
   const linkedList = new LinkedList();
   const doublyLinkedList = new DoblyLinkedList();

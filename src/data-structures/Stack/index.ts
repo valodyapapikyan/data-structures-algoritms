@@ -1,6 +1,6 @@
-import { LinkedList } from './../LinkedList/index';
-import { IStack } from './../../interfaces/stack/index';
-import { Node } from '../LinkedList/node';
+import { LinkedList } from '../linked-list/index';
+import { IStack } from '../../interfaces/stack/index';
+import { Node } from '../linked-list/node';
 
 export class Stack<T> implements IStack<T> {
   list: LinkedList<T>;

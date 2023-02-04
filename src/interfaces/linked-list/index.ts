@@ -1,4 +1,4 @@
-import { Node } from '../../data-structures/LinkedList/node';
+import { Node } from '../../data-structures/linked-list/node';
 
 
 export type TSearch<T> = {
