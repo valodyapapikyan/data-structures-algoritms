@@ -1,4 +1,4 @@
-import { LinkedList } from '../LinkedList/index';
+import { LinkedList } from '../linked-list/index';
 
 const DEFAULT_HASH_TABLE_SIZE = 32;
 

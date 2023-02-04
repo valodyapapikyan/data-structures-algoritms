@@ -1,7 +1,7 @@
-import { ILinkedList } from './../../interfaces/index';
+import { ILinkedList } from '../../interfaces/index';
 import { Node } from './node';
-import { isEmpty } from '../../utils/isEmpty';
-import { Comparator } from '../../utils/Comparator';
+import { isEmpty } from '../../utils/is-empty';
+import { Comparator } from '../../utils/comparator';
 import { TSearch } from '../../interfaces/linked-list/index';
 
 export class LinkedList<T> implements ILinkedList<T> {

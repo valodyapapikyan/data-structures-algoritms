@@ -1,7 +1,7 @@
-import { Comparator } from './../../utils/Comparator';
-import { IQueue } from './../../interfaces/queue/index';
-import { DoblyLinkedList } from '../DoublyLinkedList/index';
-import { Node } from '../DoublyLinkedList/node';
+import { Comparator } from '../../utils/comparator';
+import { IQueue } from '../../interfaces/queue/index';
+import { DoblyLinkedList } from '../doubly-linked-lits/index';
+import { Node } from '../doubly-linked-lits/node';
 
 export class PriorityQueue<T> implements IQueue<T> {
   count: number;

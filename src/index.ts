@@ -1,10 +1,11 @@
 import { binarySearch } from './algoritms/search/binary-search';
-import { PriorityQueue } from './data-structures/PriorityQueue/index';
-import { Queue } from './data-structures/Queue/index';
-import { Stack } from './data-structures/Stack/index';
-import { LinkedList } from './data-structures/LinkedList/index';
-import { DoblyLinkedList } from './data-structures/DoublyLinkedList/index';
-import { HashTable } from './data-structures/HashTable/index';
+import { PriorityQueue } from './data-structures/priority-queue/index';
+import { Queue } from './data-structures/queue/index';
+import { Stack } from './data-structures/stack/index';
+import { LinkedList } from './data-structures/linked-list/index';
+import { DoblyLinkedList } from './data-structures/doubly-linked-lits/index';
+import { HashTable } from './data-structures/hash-table/index';
+import { BinarySearchTree } from './data-structures/tree/bts';
 
 (function () {
   const linkedList = new LinkedList();
@@ -12,30 +13,54 @@ import { HashTable } from './data-structures/HashTable/index';
   const stack = new Stack();
   const queue = new Queue();
 
+  const tree = new BinarySearchTree();
+
   const hashTable = new HashTable();
+
+  tree.insert(8);
+  tree.insert(7);
+  tree.insert(2);
+
+
+  tree.insert(5);
+
+
+
+ tree.print()
+
+tree.delete(2)
+
+ tree.print()
+
+  // tree.traverseBFS()
+
+  // console.log(  tree.print());
+
+  // tree.delete(9)
+  // console.log(  tree.print());
 
   // function sleep() {
   //   return new Promise(resolve => setTimeout(resolve, 4000));
   // };
 
-  console.log(hashTable.add('valodya', 7));
-  console.log(hashTable.add('gag', 888887));
-  console.log(hashTable.add('gag', 888887));
+  // console.log(hashTable.add('valodya', 7));
+  // console.log(hashTable.add('gag', 888887));
+  // console.log(hashTable.add('gag', 888887));
 
-  console.log(hashTable.add('gag', 888887));
+  // console.log(hashTable.add('gag', 888887));
 
-  console.log(hashTable.add('gag', 90909000009));
+  // console.log(hashTable.add('gag', 90909000009));
 
-  console.log('after insert', hashTable.getValues());
+  // console.log('after insert', hashTable.getValues());
 
-  // await sleep();
-  hashTable.delete('gag');
+  // // await sleep();
+  // hashTable.delete('gag');
 
-  console.log('after delete', hashTable.getValues());
+  // console.log('after delete', hashTable.getValues());
 
-  console.log('GET function : ', hashTable.get('valodya'));
+  // console.log('GET function : ', hashTable.get('valodya'));
 
-  console.log('HAS function : ', hashTable.has('valodyaa'));
+  // console.log('HAS function : ', hashTable.has('valodyaa'));
 
   const priorityQueue = new PriorityQueue();
   priorityQueue.enqueue(7); //

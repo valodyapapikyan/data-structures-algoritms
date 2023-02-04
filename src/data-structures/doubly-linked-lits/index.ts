@@ -1,6 +1,6 @@
-import { Comparator } from './../../utils/Comparator';
-import { isEmpty } from '../../utils/isEmpty';
-import { IDoublyLinkedList } from './../../interfaces/index';
+import { Comparator } from '../../utils/comparator';
+import { isEmpty } from '../../utils/is-empty';
+import { IDoublyLinkedList } from '../../interfaces/index';
 import { Node } from './node';
 import { TSearch } from '../../interfaces/linked-list/index';
 
